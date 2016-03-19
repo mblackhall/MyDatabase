@@ -33,7 +33,17 @@ public class ScrollResultSet {
 
             if (resultSet.absolute(1)){
                 System.out.println("first company is : " +resultSet.getString("name"));
+                // we can even update it
+                resultSet.updateString("postcode","NNNN11");
+                resultSet.updateRow();
             }
+
+            // special insert row !!
+            resultSet.moveToInsertRow();
+            resultSet.updateString("name","company");
+            resultSet.insertRow();
+            resultSet.moveToCurrentRow();
+
 
 
 

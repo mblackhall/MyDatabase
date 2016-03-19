@@ -11,6 +11,7 @@ public class DbProperties {
     private static final String CONNECTION_URL = "jdbc.url";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
+    private static final String JDBC_DRIVER = "jdbc.driver";
 
 
     private static Properties dbProperties = new Properties();
@@ -32,6 +33,9 @@ public class DbProperties {
     }
     public static String getUser(){
         return dbProperties.getProperty(USERNAME);
+    }
+    public static String getDriver(){
+        return dbProperties.getProperty(JDBC_DRIVER);
     }
 
 

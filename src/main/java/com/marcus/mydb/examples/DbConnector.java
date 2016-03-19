@@ -12,6 +12,8 @@ public class DbConnector {
     public static void main(String[] args) {
         Connection connection= null;
         try {
+
+         //   Class.forName(DbProperties.getDriver()); // not required for jdbc
             connection =  DriverManager.getConnection(DbProperties.getUrl(),DbProperties.getUser(),DbProperties.getPassword());
 
             Statement statement = connection.createStatement();
@@ -30,8 +32,6 @@ public class DbConnector {
             e.printStackTrace();
 
         }
-
-
 
     }
 
