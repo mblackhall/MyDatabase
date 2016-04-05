@@ -1,7 +1,8 @@
 package com.marcus.mydb.crud;
 
-import com.marcus.mydb.setup.DbProperties;
+import com.marcus.mydb.datasource.ConnectionFactory;
 
+import javax.sql.DataSource;
 import java.sql.*;
 
 /**
@@ -9,14 +10,33 @@ import java.sql.*;
  */
 public class AddARecord {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection(DbProperties.getUrl(), DbProperties.getUser(), DbProperties.getPassword());
 
-            Statement statement = connection.createStatement();
-            int noInserted = statement.executeUpdate("INSERT  INTO company (name,postcode,start_date) VALUES ('Gizmos','1112AA','08-14-1999')");
+            DataSource ds = ConnectionFactory.getDataSource();
+            ConnectionFactory.displayDataSource();
 
+            connection = ds.getConnection();
+
+            ConnectionFactory.displayDataSource();
+            Thread.sleep(10000);
+
+
+            PreparedStatement statement = connection.prepareStatement("SELECT * from company");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next() ){
+                System.out.println(resultSet.getInt(1));
+            }
+
+            Thread.sleep(10000);
+
+
+            ResultSet resultSet2 = statement.executeQuery();
+            while (resultSet2.next() ){
+                System.out.println(resultSet2.getInt(1));
+            }
+            Thread.sleep(10000);
 
         } catch (SQLException e) {
 

@@ -14,6 +14,9 @@ public class DbProperties {
     private static final String JDBC_DRIVER = "jdbc.driver";
 
 
+    private DbProperties (){
+
+    }
     private static Properties dbProperties = new Properties();
 
     static {
